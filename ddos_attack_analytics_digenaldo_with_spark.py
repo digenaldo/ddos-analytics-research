@@ -502,70 +502,55 @@ classifiers = {
 execution_times = {clf_name: [] for clf_name in classifiers}
 accuracies = {clf_name: [] for clf_name in classifiers}
 
-# Executar cada classificador dez vezes
-# for iteration in range(10):
-#     print(f"Iteração {iteration}")
-#     for clf_name, clf_model in classifiers.items():
-#         start_time = time.time()
-#         # Treinar o modelo
-#         model = clf_model.fit(train_features_selected)
-#         # Avaliar o modelo
-#         predictions = model.transform(test_features_selected)
-#         evaluator = MulticlassClassificationEvaluator(labelCol="label", predictionCol="prediction", metricName="accuracy")
-#         accuracy = evaluator.evaluate(predictions)
-#         end_time = time.time()
-#         execution_time = end_time - start_time
-#         # Armazenar o tempo de execução e a acurácia
-#         execution_times[clf_name].append(execution_time)
-#         accuracies[clf_name].append(accuracy)
-#         # Imprimir resultados
-#         print(f"Acurácia ({clf_name}): {accuracy}, Tempo de Execução: {execution_time} segundos")
-#         print()
-
-# Executar cada classificador dez vezes
-for iteration in range(5):
-    print(f"Iteração {iteration+1}")
-    for clf_name, clf_model in classifiers.items():
-        start_time = time.time()
-        # Treinar o modelo
-        model = clf_model.fit(train_features_selected)
-        # Avaliar o modelo
-        predictions = model.transform(test_features_selected)
-        evaluator = MulticlassClassificationEvaluator(labelCol="label", predictionCol="prediction", metricName="accuracy")
-        accuracy = evaluator.evaluate(predictions)
-        end_time = time.time()
-        execution_time = end_time - start_time
-        # Armazenar o tempo de execução e a acurácia
-        execution_times[clf_name].append(execution_time)
-        accuracies[clf_name].append(accuracy)
-        # Imprimir resultados
-        print(f"Acurácia ({clf_name}): {accuracy}, Tempo de Execução: {execution_time} segundos")
-
-        # Loop para 30 execuções por classificador
-        run_times = []
-        run_accuracies = []
-        for run in range(5):
+try:
+    # Executar cada classificador dez vezes
+    for iteration in range(1):
+        print(f"Iteração {iteration+1}")
+        for clf_name, clf_model in classifiers.items():
             start_time = time.time()
+            # Treinar o modelo
             model = clf_model.fit(train_features_selected)
+            # Avaliar o modelo
             predictions = model.transform(test_features_selected)
+            evaluator = MulticlassClassificationEvaluator(labelCol="label", predictionCol="prediction", metricName="accuracy")
             accuracy = evaluator.evaluate(predictions)
             end_time = time.time()
-            run_times.append(end_time - start_time)
-            run_accuracies.append(accuracy)
-            print(f"    Execução {run+1} para o classificador {clf_name}")
-            print(f"    Tempo de execução: {run_times[-1]} segundos")
-            print(f"    Acurácia: {run_accuracies[-1]}")
+            execution_time = end_time - start_time
+            # Armazenar o tempo de execução e a acurácia
+            execution_times[clf_name].append(execution_time)
+            accuracies[clf_name].append(accuracy)
+            # Imprimir resultados
+            print(f"Acurácia ({clf_name}): {accuracy}, Tempo de Execução: {execution_time} segundos")
 
-        # Adicionar resultados
-        add_results(clf_name, "bd", execution_times[clf_name], accuracies[clf_name], run_times, run_accuracies, iteration+1)
-        print()  # Adiciona uma linha em branco após as execuções do classificador
-    print()  # Adiciona uma linha em branco após cada iteração
+            # Loop para 30 execuções por classificador
+            run_times = []
+            run_accuracies = []
+            for run in range(30):
+                start_time = time.time()
+                model = clf_model.fit(train_features_selected)
+                predictions = model.transform(test_features_selected)
+                accuracy = evaluator.evaluate(predictions)
+                end_time = time.time()
+                run_times.append(end_time - start_time)
+                run_accuracies.append(accuracy)
+                print(f"    Execução {run+1} para o classificador {clf_name}")
+                print(f"    Tempo de execução: {run_times[-1]} segundos")
+                print(f"    Acurácia: {run_accuracies[-1]}")
 
-# Converte a lista de resultados em um DataFrame
-df_results = pd.DataFrame(results)
-print(df_results)
+            # Adicionar resultados
+            add_results(clf_name, "bd", execution_times[clf_name], accuracies[clf_name], run_times, run_accuracies, iteration+1)
+            print()  # Adiciona uma linha em branco após as execuções do classificador
+        print()  # Adiciona uma linha em branco após cada iteração
 
-# Exporta o DataFrame para um arquivo CSV
-df_results.to_csv("resultados_bd.csv", index=False)
+except Exception as e:
+    print(f"Ocorreu um erro: {e}")
+
+finally:
+    # Converte a lista de resultados em um DataFrame
+    df_results = pd.DataFrame(results)
+    print(df_results)
+
+    # Exporta o DataFrame para um arquivo CSV
+    df_results.to_csv("resultados_bd.csv", index=False)
 
 spark.stop()
