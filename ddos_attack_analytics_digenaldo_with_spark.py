@@ -16,26 +16,26 @@ from pyspark import SparkContext
 from pyspark import SparkConf
 
 # Creating a SparkSession
-# spark = SparkSession.builder \
-#     .appName("DDoS Attack Data Analysis") \
-#     .getOrCreate()
+spark = SparkSession.builder \
+    .appName("DDoS Attack Data Analysis") \
+    .getOrCreate()
 # Cria a configuração do Spark
-conf = SparkConf() \
-    .setAppName("DDoS Attack Data Analysis") \
-    .setMaster("local[*]") \
-    .set("spark.executor.memory", "70g") \
-    .set("spark.driver.memory", "50g") \
-    .set("spark.memory.offHeap.enabled", "true") \
-    .set("spark.memory.offHeap.size", "16g")
+# conf = SparkConf() \
+#     .setAppName("DDoS Attack Data Analysis") \
+#     .setMaster("local[*]") \
+#     .set("spark.executor.memory", "70g") \
+#     .set("spark.driver.memory", "50g") \
+#     .set("spark.memory.offHeap.enabled", "true") \
+#     .set("spark.memory.offHeap.size", "16g")
 
-# Inicializa o SparkContext com a configuração
-sc = SparkContext(conf=conf)
+# # Inicializa o SparkContext com a configuração
+# sc = SparkContext(conf=conf)
 
-# Define o nível de log para ERROR
-sc.setLogLevel("ERROR")
+# # Define o nível de log para ERROR
+# sc.setLogLevel("ERROR")
 
-# Cria a sessão do Spark
-spark = SparkSession(sc)
+# # Cria a sessão do Spark
+# spark = SparkSession(sc)
 
 # Load DataFrames
 train_data = spark.read.csv("train_mosaic.csv", header=True, inferSchema=True)
@@ -429,23 +429,23 @@ def add_results(algorithm, environment, times, accuracies, iteration_times, iter
     })
     
 # Loop sobre os classificadores
-for clf_name, clf_model in classifiers.items():
-    start_time = time.time()
-    # Treinar o modelo
-    model = clf_model.fit(train_features_selected)
-    # Avaliar o modelo
-    predictions = model.transform(test_features_selected)
-    evaluator = MulticlassClassificationEvaluator(labelCol="label", predictionCol="prediction", metricName="accuracy")
-    accuracy = evaluator.evaluate(predictions)
-    end_time = time.time()
-    execution_time = end_time - start_time
-    # Armazenar o tempo de execução
-    execution_times[clf_name] = execution_time
-    # Imprimir os resultados
-    print(f"Classifier: {clf_name}")
-    print(f"Accuracy: {accuracy}")
-    print(f"Execution Time: {execution_time} seconds")
-    print("\n")
+# for clf_name, clf_model in classifiers.items():
+#     start_time = time.time()
+#     # Treinar o modelo
+#     model = clf_model.fit(train_features_selected)
+#     # Avaliar o modelo
+#     predictions = model.transform(test_features_selected)
+#     evaluator = MulticlassClassificationEvaluator(labelCol="label", predictionCol="prediction", metricName="accuracy")
+#     accuracy = evaluator.evaluate(predictions)
+#     end_time = time.time()
+#     execution_time = end_time - start_time
+#     # Armazenar o tempo de execução
+#     execution_times[clf_name] = execution_time
+#     # Imprimir os resultados
+#     print(f"Classifier: {clf_name}")
+#     print(f"Accuracy: {accuracy}")
+#     print(f"Execution Time: {execution_time} seconds")
+#     print("\n")
 
 from pyspark.ml.classification import NaiveBayes, DecisionTreeClassifier, LogisticRegression, RandomForestClassifier
 from pyspark.ml.evaluation import MulticlassClassificationEvaluator
@@ -467,19 +467,19 @@ classifiers = {
 accuracies = {}
 
 # Loop sobre os classificadores
-for clf_name, clf_model in classifiers.items():
-    # Treinar o modelo
-    model = clf_model.fit(train_features_selected)
-    # Avaliar o modelo
-    predictions = model.transform(test_features_selected)
-    evaluator = MulticlassClassificationEvaluator(labelCol="label", predictionCol="prediction", metricName="accuracy")
-    accuracy = evaluator.evaluate(predictions)
-    # Armazenar a acurácia
-    accuracies[clf_name] = accuracy
-    # Imprimir os resultados
-    print(f"Classifier: {clf_name}")
-    print(f"Accuracy: {accuracy}")
-    print("\n")
+# for clf_name, clf_model in classifiers.items():
+#     # Treinar o modelo
+#     model = clf_model.fit(train_features_selected)
+#     # Avaliar o modelo
+#     predictions = model.transform(test_features_selected)
+#     evaluator = MulticlassClassificationEvaluator(labelCol="label", predictionCol="prediction", metricName="accuracy")
+#     accuracy = evaluator.evaluate(predictions)
+#     # Armazenar a acurácia
+#     accuracies[clf_name] = accuracy
+#     # Imprimir os resultados
+#     print(f"Classifier: {clf_name}")
+#     print(f"Accuracy: {accuracy}")
+#     print("\n")
 
 from pyspark.ml.classification import NaiveBayes, DecisionTreeClassifier, LogisticRegression, RandomForestClassifier
 from pyspark.ml.evaluation import MulticlassClassificationEvaluator
@@ -492,10 +492,10 @@ import matplotlib.pyplot as plt
 
 # Lista de classificadores
 classifiers = {
-    "Naive Bayes": NaiveBayes(featuresCol="features", labelCol="label", smoothing=1e-9),
-    "Decision Tree": DecisionTreeClassifier(featuresCol="features", labelCol="label", maxDepth=5, maxBins=32),
-    "Logistic Regression": LogisticRegression(featuresCol="features", labelCol="label", maxIter=10),
-    "Random Forest": RandomForestClassifier(featuresCol="features", labelCol="label", numTrees=10, maxDepth=5)
+    "nb": NaiveBayes(featuresCol="features", labelCol="label", smoothing=1e-9),
+    "dt": DecisionTreeClassifier(featuresCol="features", labelCol="label", maxDepth=5, maxBins=32),
+    "lr": LogisticRegression(featuresCol="features", labelCol="label", maxIter=10),
+    "rf": RandomForestClassifier(featuresCol="features", labelCol="label", numTrees=10, maxDepth=5)
 }
 
 # Dicionários para armazenar os tempos de execução e as acurácias
@@ -523,7 +523,7 @@ accuracies = {clf_name: [] for clf_name in classifiers}
 #         print()
 
 # Executar cada classificador dez vezes
-for iteration in range(30):
+for iteration in range(5):
     print(f"Iteração {iteration+1}")
     for clf_name, clf_model in classifiers.items():
         start_time = time.time()
@@ -544,7 +544,7 @@ for iteration in range(30):
         # Loop para 30 execuções por classificador
         run_times = []
         run_accuracies = []
-        for run in range(30):
+        for run in range(5):
             start_time = time.time()
             model = clf_model.fit(train_features_selected)
             predictions = model.transform(test_features_selected)
