@@ -38,10 +38,15 @@ To run the scripts, follow the steps below:
    ```bash
    pip install -r requirements.txt
    ```
-3. Navigate to the `src` directory and run the Python script:
+3. Navigate to the `abd` directory and run the Python script for the detection scheme using Spark:
    ```bash
-   cd src
-   python Main.py
+   cd abd
+   python main.py
+   ```
+4. Navigate to the `apg` directory and run the Python script for additional analytics and performance evaluation:
+   ```bash
+   cd ../apg
+   python main.py
    ```
 
 ## Results
