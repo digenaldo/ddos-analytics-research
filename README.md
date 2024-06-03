@@ -14,8 +14,15 @@ This project presents a detection scheme utilizing machine learning and assesses
 Preliminary findings suggest the system's efficacy, showcasing high accuracy levels while maintaining reasonable response times. This integrated approach, marrying sophisticated data analysis with big data capabilities, shows potential in fortifying defenses against cyber threats within an increasingly intricate and dynamic landscape.
 
 ## Files in the Repository
-- **ddos_attack_analytics_abd.py**: Contains the implementation and analysis of the detection scheme.
-- **ddos_attack_analytics_apg.py**: Contains additional analytics and performance evaluation.
+- **src**
+  - **Preprocessing.py**: Contains data preprocessing operations.
+  - **Models.py**: Contains model definitions and training.
+  - **Evaluation.py**: Contains model evaluation functions.
+  - **Analysis.py**: Contains result analysis functions.
+  - **Main.py**: Main script that imports and executes all other functionalities.
+- **data**
+  - **train_mosaic.csv.zip**: Training dataset.
+  - **test_mosaic.csv.zip**: Test dataset.
 
 ## Usage
 To run the scripts, follow the steps below:
@@ -25,10 +32,10 @@ To run the scripts, follow the steps below:
    ```bash
    pip install -r requirements.txt
    ```
-3. Run the Python scripts to perform the DDoS attack detection and analysis:
+3. Navigate to the `src` directory and run the Python script:
    ```bash
-   python ddos_attack_analytics_abd.py
-   python ddos_attack_analytics_apg.py
+   cd src
+   python Main.py
    ```
 
 ## Results
