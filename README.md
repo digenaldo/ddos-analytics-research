@@ -41,4 +41,4 @@ This project demonstrates the potential of using machine learning and big data a
 This project is licensed under the Apache License - see the [LICENSE](LICENSE) file for details.
 
 ## Contact
-For any inquiries or contributions, please contact [your-email@example.com].
+For any inquiries or contributions, please contact [digenaldo.rangel@gmail.com].
