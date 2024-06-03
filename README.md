@@ -14,12 +14,18 @@ This project presents a detection scheme utilizing machine learning and assesses
 Preliminary findings suggest the system's efficacy, showcasing high accuracy levels while maintaining reasonable response times. This integrated approach, marrying sophisticated data analysis with big data capabilities, shows potential in fortifying defenses against cyber threats within an increasingly intricate and dynamic landscape.
 
 ## Files in the Repository
-- **src**
-  - **Preprocessing.py**: Contains data preprocessing operations.
-  - **Models.py**: Contains model definitions and training.
-  - **Evaluation.py**: Contains model evaluation functions.
-  - **Analysis.py**: Contains result analysis functions.
-  - **Main.py**: Main script that imports and executes all other functionalities.
+- **abd**
+  - **data_processing.py**: Contains data processing functions.
+  - **evaluation.py**: Provides evaluation metrics and functions.
+  - **main.py**: Main script for running the detection scheme using Spark.
+  - **model_training.py**: Includes functions for training machine learning models.
+  - **spark_setup.py**: Configures the Spark environment.
+- **apg**
+  - **analysis.py**: Script for additional analytics and visualization.
+  - **evaluation.py**: Contains evaluation metrics and functions specific to the APG module.
+  - **main.py**: Main script for running additional analytics and performance evaluation.
+  - **models.py**: Includes machine learning models for the APG module.
+  - **preprocessing.py**: Provides preprocessing functions for the APG module.
 - **data**
   - **train_mosaic.csv.zip**: Training dataset.
   - **test_mosaic.csv.zip**: Test dataset.
