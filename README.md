@@ -29,8 +29,8 @@ Preliminary findings suggest the system's efficacy, showcasing high accuracy lev
 - **main.py**: Main script for running the detection scheme using Spark.
 - **model_training.py**: Includes functions for training machine learning models.
 - **spark_setup.py**: Configures the Spark environment.
-- **cross_validation.py**: Responsible for implementing cross-validation to evaluate model performance.
-- **hyperparameter_tuning.py**: Contains methods for hyperparameter tuning to optimize the machine learning models.
+- **cross_validation.py**: Responsible for implementing cross-validation to evaluate model performance in the ABD module.
+- **hyperparameter_tuning.py**: Contains methods for hyperparameter tuning to optimize the machine learning models in the ABD module.
 
 ### apg
 - **analysis.py**: Script for additional analytics and visualization.
