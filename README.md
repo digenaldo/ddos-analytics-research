@@ -1,5 +1,13 @@
 # DDoS Attack Analytics Research Project
 
+## Master's Degree Research
+
+This repository is part of a Master's degree research project focused on developing and evaluating a detection scheme for application layer DDoS attacks using machine learning and big data analytics techniques. The project aims to contribute to the field of cybersecurity by exploring innovative approaches to enhance threat detection and mitigation strategies.
+
+The research conducted in this project involves the investigation of various classification algorithms, performance evaluation methodologies, and data preprocessing techniques to develop an effective and efficient detection system. The findings and insights gained from this research endeavor are intended to advance the understanding of DDoS attack detection and contribute to the development of more robust cybersecurity solutions.
+
+For more information about the research objectives, methodologies, and outcomes, please refer to the project documentation or contact the project supervisor.
+
 ## Overview
 The threat of application layer DDoS attacks is escalating, underscoring the need for effective detection methods to safeguard networked systems. With attackers constantly evolving their techniques, cybersecurity efforts are becoming more challenging. In response, leveraging advanced artificial intelligence technologies emerges as a promising avenue for bolstering defenses.
 
