@@ -37,6 +37,8 @@ Preliminary findings suggest the system's efficacy, showcasing high accuracy lev
 - **data**
   - **train_mosaic.csv.zip**: Training dataset.
   - **test_mosaic.csv.zip**: Test dataset.
+- **graphs**
+  - *Scripts and generated graphs related to data visualization.*
 
 ## Usage
 To run the scripts, follow the steps below:
