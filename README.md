@@ -22,23 +22,31 @@ This project presents a detection scheme utilizing machine learning and assesses
 Preliminary findings suggest the system's efficacy, showcasing high accuracy levels while maintaining reasonable response times. This integrated approach, marrying sophisticated data analysis with big data capabilities, shows potential in fortifying defenses against cyber threats within an increasingly intricate and dynamic landscape.
 
 ## Files in the Repository
-- **abd**
-  - **data_processing.py**: Contains data processing functions.
-  - **evaluation.py**: Provides evaluation metrics and functions.
-  - **main.py**: Main script for running the detection scheme using Spark.
-  - **model_training.py**: Includes functions for training machine learning models.
-  - **spark_setup.py**: Configures the Spark environment.
-- **apg**
-  - **analysis.py**: Script for additional analytics and visualization.
-  - **evaluation.py**: Contains evaluation metrics and functions specific to the APG module.
-  - **main.py**: Main script for running additional analytics and performance evaluation.
-  - **models.py**: Includes machine learning models for the APG module.
-  - **preprocessing.py**: Provides preprocessing functions for the APG module.
-- **data**
-  - **train_mosaic.csv.zip**: Training dataset.
-  - **test_mosaic.csv.zip**: Test dataset.
-- **graphs**
-  - *Scripts and generated graphs related to data visualization.*
+
+### abd
+- **data_processing.py**: Contains data processing functions.
+- **evaluation.py**: Provides evaluation metrics and functions.
+- **main.py**: Main script for running the detection scheme using Spark.
+- **model_training.py**: Includes functions for training machine learning models.
+- **spark_setup.py**: Configures the Spark environment.
+- **cross_validation.py**: Responsible for implementing cross-validation to evaluate model performance.
+- **hyperparameter_tuning.py**: Contains methods for hyperparameter tuning to optimize the machine learning models.
+
+### apg
+- **analysis.py**: Script for additional analytics and visualization.
+- **evaluation.py**: Contains evaluation metrics and functions specific to the APG module.
+- **main.py**: Main script for running additional analytics and performance evaluation.
+- **models.py**: Includes machine learning models for the APG module.
+- **preprocessing.py**: Provides preprocessing functions for the APG module.
+- **cross_validation.py**: Responsible for implementing cross-validation to evaluate model performance in the APG module.
+- **hyperparameter_tuning.py**: Contains methods for hyperparameter tuning to optimize the machine learning models in the APG module.
+
+### data
+- **train_mosaic.csv.zip**: Training dataset.
+- **test_mosaic.csv.zip**: Test dataset.
+
+### graphs
+- *Scripts and generated graphs related to data visualization.*
 
 ## Usage
 To run the scripts, follow the steps below:
