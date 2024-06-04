@@ -1,25 +1,24 @@
-# data_preprocessing.py
 from pyspark.sql.functions import when, col
 
 def preprocess_data(spark):
-    """Realiza o pré-processamento dos dados."""
+    """Performs data preprocessing."""
     train_data = spark.read.csv("train_mosaic.csv", header=True, inferSchema=True)
     test_data = spark.read.csv("test_mosaic.csv", header=True, inferSchema=True)
 
-    # Substitui valores negativos
+    # Replace negative values
     train_data = replace_values_less_than_zero(train_data)
     test_data = replace_values_less_than_zero(test_data)
 
-    # Filtra valores inválidos
+    # Filter invalid values
     train_data_filtered = filter_invalid_values(train_data)
     test_data_filtered = filter_invalid_values(test_data)
 
     return train_data_filtered, test_data_filtered
 
 def replace_values_less_than_zero(df, replacement_value=0.0):
-    """Substitui todos os valores menores que zero por um valor de substituição em colunas específicas de um DataFrame."""
-    # Colunas a serem substituídas
-    feature_cols_replaces = [...]  # lista de colunas específicas
+    """Replaces all values less than zero with a replacement value in specific columns of a DataFrame."""
+    # Columns to be replaced
+    feature_cols_replaces = [...]  # list of specific columns
     for col_name in feature_cols_replaces:
         df = df.withColumn(
             col_name,
@@ -28,9 +27,9 @@ def replace_values_less_than_zero(df, replacement_value=0.0):
     return df
 
 def filter_invalid_values(df):
-    """Filtra linhas com valores inválidos (negativos, NaN, infinito, string vazia) em colunas específicas."""
-    # Colunas a serem filtradas
-    feature_cols = [...]  # lista de colunas específicas
+    """Filters rows with invalid values (negative, NaN, infinity, empty string) in specific columns."""
+    # Columns to be filtered
+    feature_cols = [...]  # list of specific columns
     invalid_conditions = [
         col(col_name).isin(float("inf"), float("-inf"), "") | col(col_name).isNull() | (col(col_name) < 0)
         for col_name in feature_cols

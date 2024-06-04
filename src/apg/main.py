@@ -14,6 +14,16 @@ X_train, X_test, y_train, y_test = preprocess_data(train_file, test_file)
 # Train models
 models = train_models(X_train, y_train)
 
+# Run Cross Validation
+print("Running Cross Validation...")
+cv_results = main_cross_validation()
+print(cv_results)
+
+# Run Hyperparameter Tuning
+print("Running Hyperparameter Tuning...")
+ht_results = main_hyperparameter_tuning()
+print(ht_results)
+
 # Evaluate models
 accuracies = evaluate_models(models, X_test, y_test)
 
